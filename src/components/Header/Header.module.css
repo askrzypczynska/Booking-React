@@ -1,12 +1,15 @@
 .header {
     height: 50px;
-    background-color: #cdcdcd;
+    background: url(../../assets/images/Burj.png) center 25%;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 15px;
+    padding: 80px 15px;
 }
+
 
 .input {
     width: calc(100% - 20px);
+    opacity: 1;
 }
