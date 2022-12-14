@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
-function Searchbar () {
+function Searchbar (props) {
     const [term, setTerm] = useState('');
+
     const search = () => {
-        console.log("szukaj", term);
+        props.onSearch(term)
     }
-    const updateTerm = (e) => {
-        setTerm(e.target.value);
-    }
+
     const onKeyDownHandler = (e) =>{
         if(e.key === 'Enter'){
             search();
