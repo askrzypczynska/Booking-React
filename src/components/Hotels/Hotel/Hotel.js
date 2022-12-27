@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 import styles from "./Hotel.module.css"
 import hotelImg from "../../../assets/images/hotel1.png"
+import ThemeContext from "../../../context/themeContext";
 
 const propTypes = {
     name: PropTypes.string.isRequired,
@@ -38,7 +39,13 @@ function Hotel(props){
 
                     <div className="col-12">
                         <p className={styles.description}>{props.description}</p>
-                        <a href="#" className="btn btn-primary float-end">Pokaż</a>
+                        <ThemeContext.Consumer>
+                            {({theme}) => (
+                                <a href="#" className={`btn btn-${theme} float-end`}>
+                                    Pokaż
+                                </a>
+                            )}
+                        </ThemeContext.Consumer>
                     </div>
                 </div>
             </div>
