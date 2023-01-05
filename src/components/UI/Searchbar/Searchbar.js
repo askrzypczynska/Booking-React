@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import ThemeContext from "../../../context/themeContext";
 
@@ -9,6 +9,7 @@ const propTypes = {
 
 function Searchbar (props) {
     const [term, setTerm] = useState('');
+    const theme = useContext(ThemeContext)
 
 
     const search = () => {
@@ -31,13 +32,10 @@ function Searchbar (props) {
                 type="text" 
                 placeholder='Szukaj...' 
             />
-            <ThemeContext.Consumer>
-                {({theme}) => 
-                    <button 
-                        onClick={search}
-                        className={`ml-1 btn btn-${theme}`}>Szukaj
-                    </button>} 
-            </ThemeContext.Consumer>
+                <button 
+                    onClick={search}
+                    className={`ml-1 btn btn-${theme.color}`}>Szukaj
+                </button>
         </div>
     )
 }
