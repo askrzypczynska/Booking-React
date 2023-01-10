@@ -1,15 +1,26 @@
 .header {
     height: 50px;
-    background: url(../../assets/images/Burj.png) center 25%;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 80px 15px;
+    overflow: hidden;
+    position: relative;
 }
 
 
 .input {
     width: calc(100% - 20px);
     opacity: 1;
+}
+
+.headerImage {
+    background: url(../../assets/images/Burj.png) center 25%;
+    background-size: 105%;
+    position: absolute;
+    top: -5%;
+    bottom: -5%;
+    left: -5%;
+    right: -5%;
+    z-index: -1;
 }
