@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 import ThemeButton from './components/UI/ThemeButton/ThemeButton';
 import ThemeContext from './context/themeContext';
 import AuthContext from './context/authContext';
+import BestHotel from './components/Hotels/BestHotel/BestHotel';
 
 const backendHotels = [
   {
@@ -44,7 +45,7 @@ const backendHotels = [
 const reducer = (state, action) => {
   switch (action.type) {
     case 'change-theme':
-      const theme = state.theme === 'dark' ? 'primary' : 'dark'
+      const theme = state.theme === 'primary' ? 'dark' : 'primary'
       return {...state, theme};
     case 'set-hotels':
       return {...state, hotels: action.hotels};
@@ -63,7 +64,7 @@ const initialState = {
   hotels: [],
   loading: true,
   isAuthenticated: false,
-  theme: 'dark'
+  theme: 'primary'
 }
 
 function App() {
@@ -81,6 +82,14 @@ function App() {
         .includes(term.toLowerCase()));
 
     dispatch({ type: 'set-hotels', hotels: newHotels});
+  }
+
+  const getBestHotel = () => {
+    if (state.hotels.length < 2) {
+      return null;
+    } else {
+      return state.hotels.sort((a, b) => a.rating > b.rating ? -1 : 1)[0];
+    }
   }
 
   useEffect(() => {
@@ -102,7 +111,11 @@ function App() {
     state.loading ? (
       <LoadingIcon />
     ) : (
-      <Hotels hotels={state.hotels}/>)
+      <>
+        <BestHotel getHotel={getBestHotel} />
+        <Hotels hotels={state.hotels}/>
+      </>
+    )
   );
 
   const menu = <Menu />;
