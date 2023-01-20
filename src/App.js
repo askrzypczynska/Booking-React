@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Hotels from './components/Hotels/Hotels';
-import { useEffect, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer, useState } from 'react';
 import LoadingIcon from './components/UI/LoadingIcon/LoadingIcon';
 import Searchbar from './components/UI/Searchbar/Searchbar';
 import Layout from './components/Layout/Layout';
@@ -11,6 +11,7 @@ import ThemeButton from './components/UI/ThemeButton/ThemeButton';
 import ThemeContext from './context/themeContext';
 import AuthContext from './context/authContext';
 import BestHotel from './components/Hotels/BestHotel/BestHotel';
+import InspiringQuote from './components/InspiringQuote/InspiringQuote';
 
 const backendHotels = [
   {
@@ -71,10 +72,6 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const changeTheme = () => {
-    dispatch({ type: 'change-theme' });
-  }
-
   const searchHandler = term => {
     const newHotels = [...backendHotels]
       .filter(x => x.name
@@ -88,9 +85,10 @@ function App() {
     if (state.hotels.length < 2) {
       return null;
     } else {
-      return state.hotels.sort((a, b) => a.rating > b.rating ? -1 : 1)[0];
+      return state.hotels
+        .sort((a, b) => a.rating > b.rating ? -1 : 1)[0];
     }
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -101,6 +99,7 @@ function App() {
 
   const header = (
     <Header>
+      <InspiringQuote/>
       <Searchbar 
       onSearch={term => searchHandler(term)} />
       <ThemeButton />
@@ -112,7 +111,7 @@ function App() {
       <LoadingIcon />
     ) : (
       <>
-        <BestHotel getHotel={getBestHotel} />
+        {getBestHotel() ? <BestHotel getHotel={getBestHotel} /> : null}
         <Hotels hotels={state.hotels}/>
       </>
     )
