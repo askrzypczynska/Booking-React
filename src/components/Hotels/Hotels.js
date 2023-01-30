@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import Hotel from "./Hotel/Hotel";
 import styles from './Hotels.module.css';
 import PropTypes from "prop-types"
+import useWebsiteTitle from "../../hooks/useWebsiteTitle";
 
 const propTypes = {
     hotels: PropTypes.array.isRequired
@@ -13,6 +14,8 @@ const slowFunction = (count) => {
 }
 
 function Hotels(props) {
+
+    
     const count = useMemo(() => {
         return slowFunction(props.hotels.length)
     }, [props.hotels.length]);
