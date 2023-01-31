@@ -55,7 +55,7 @@ function Hotel(props){
 
                     <div className="col-12">
                         <p className={styles.description}>{props.description}</p>
-                            <Link to={`/hotel/${props.id}`}>
+                            <Link to={`/hotele/${props.id}`}>
                                 Pokaż
                             </Link>
                             {/* <a 

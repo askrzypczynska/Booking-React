@@ -4,9 +4,9 @@ import moment from 'moment/moment';
 
 const BestHotel = (props) => {
     const [time, setTime] = useState('');
-
+    
     const hotel = props.getHotel();
-    const endTime = moment().add(23, 'minutes').add(34, 'seconds');
+    const endTime = moment().add(26, 'minutes').add(20, 'seconds');
     let interval = null;
 
     useEffect(() => {
@@ -15,14 +15,14 @@ const BestHotel = (props) => {
             const minutes = Math.floor(leftTime / 60);
             const seconds = Math.floor(leftTime % 60);
             setTime(`${minutes} minuty ${seconds} sekund`);
+
         }, 1000);
 
         return () => {
             clearInterval(interval);
         }
+
     }, []);
-
-
     return (
         <div className="card bg-primary text-white">
             <div className="card-header">
