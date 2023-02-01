@@ -15,7 +15,8 @@ import { reducer, initialState } from './reducer';
 import Home from './pages/Home/Home';
 import Hotel from './pages/Hotel/Hotel';
 import Search from './pages/Search/Search';
-
+import Profile from './pages/Profile/Profile';
+import NotFound from './pages/404/404';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -31,19 +32,12 @@ function App() {
   const content = (
     <div>
       <Switch>
-        <Route path="/hotele/:id">
-          <Hotel />
-        </Route>
-
-        <Route path="/wyszukaj/:term">
-          <Search />
-        </Route>
-
-        <Route path="/">
-          <Home />
-        </Route>
+        <Route path="/hotele/:id" component={Hotel} />
+        <Route path="/wyszukaj/:term?" component={Search}/>
+        <Route path="/profil" component={Profile}/>
+        <Route path="/" exact component={Home}/>
+        <Route component={NotFound}/>
       </Switch>
-
     </div>
   );
 

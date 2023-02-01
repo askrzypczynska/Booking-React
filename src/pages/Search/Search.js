@@ -10,7 +10,7 @@ export default function Search(props) {
 
     return (
         <div>
-            Wyniki wyszukiwaniea
+            Wyniki wyszukiwania
         </div>
     )
 }
