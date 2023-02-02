@@ -1,9 +1,10 @@
 import ProfileDetails from "./ProfileDetails/ProfileDetails";
 import MyHotels from "./MyHotels/MyHotels";
-import { Switch, Route, Link, NavLink, useRouteMatch } from "react-router-dom";
+import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
 
 export default function Profile(props) {
     const { path, url } = useRouteMatch();
+
 
     return (
         <div className="card">
