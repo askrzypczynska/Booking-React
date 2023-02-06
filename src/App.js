@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import { useReducer } from 'react';
+import { useReducer, lazy, Suspense } from 'react';
 import Searchbar from './components/UI/Searchbar/Searchbar';
 import Layout from './components/Layout/Layout';
 import Footer from './components/Footer/Footer';
@@ -15,10 +15,12 @@ import { reducer, initialState } from './reducer';
 import Home from './pages/Home/Home';
 import Hotel from './pages/Hotel/Hotel';
 import Search from './pages/Search/Search';
-import Profile from './pages/Profile/Profile';
 import NotFound from './pages/404/404';
 import Login from './pages/Auth/Login/Login';
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute';
+import ErrorBoundary from './hooks/ErrorBoundary';
+
+const Profile = lazy(() => import('./pages/Profile/Profile'));
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,16 +35,20 @@ function App() {
   
   const content = (
     <div>
-      <Switch>
+      <ErrorBoundary>
+      <Suspense fallback={<p>Ładowanie...</p>}>
+        <Switch>
 
-        <AuthenticatedRoute path="/profil" component={Profile} />
-        <Route path="/hotele/:id" component={Hotel} />
-        <Route path="/wyszukaj/:term?" component={Search}/>
-        <Route path="/zaloguj" component={Login}/>
-        <Route path="/" exact component={Home}/>
-        <Route component={NotFound}/>
-        
-      </Switch>
+          <AuthenticatedRoute path="/profil" component={Profile} />
+          <Route path="/hotele/:id" component={Hotel} />
+          <Route path="/wyszukaj/:term?" component={Search}/>
+          <Route path="/zaloguj" component={Login}/>
+          <Route path="/" exact component={Home}/>
+          <Route component={NotFound}/>
+
+        </Switch>
+      </Suspense>
+      </ErrorBoundary>
     </div>
   );
 
@@ -64,12 +70,14 @@ function App() {
               state: state,
               dispatch: dispatch
             }}>
-            <Layout 
-              header={header}
-              menu={menu}
-              content={content}
-              footer={footer}
-            />
+
+              <Layout 
+                header={header}
+                  menu={menu}
+                  content={content}
+                  footer={footer}
+              />
+
           </ReducerContext.Provider>
         </ThemeContext.Provider>
       </AuthContext.Provider>

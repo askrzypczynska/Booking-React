@@ -5,6 +5,7 @@ import { Switch, Route, NavLink, useRouteMatch } from "react-router-dom";
 export default function Profile(props) {
     const { path, url } = useRouteMatch();
 
+    // throw new Error('Problem z internetem')
 
     return (
         <div className="card">

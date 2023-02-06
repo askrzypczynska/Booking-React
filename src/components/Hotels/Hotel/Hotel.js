@@ -55,16 +55,10 @@ function Hotel(props){
 
                     <div className="col-12">
                         <p className={styles.description}>{props.description}</p>
-                            <Link to={`/hotele/${props.id}`}>
+                            <Link to={`/hotele/${props.id}`} onClick={clickHandler} className={`btn btn-${theme.color} mt-2 px-4`}>
                                 Pokaż
                             </Link>
-                            {/* <a 
-                                href="/hotel/id" 
-                                onClick={clickHandler}
-                                className={`btn btn-${theme.color} float-end`}
-                            >
-                                Pokaż
-                            </a> */}
+                            {}
                     </div>
                 </div>
             </div>

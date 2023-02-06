@@ -3,8 +3,9 @@ import useStateStorage from '../../hooks/useStateStorage';
 import useWebsiteTitle from '../../hooks/useWebsiteTitle';
 import BestHotel from '../../components/Hotels/BestHotel/BestHotel';
 import Hotels from '../../components/Hotels/Hotels';
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import LoadingIcon from '../../components/UI/LoadingIcon/LoadingIcon';
+import { Last } from 'react-bootstrap/esm/PageItem';
 
 
 const backendHotels = [
@@ -38,8 +39,9 @@ const backendHotels = [
   ]
 
 export default function Home(props) {
-    const [lastHotel, setLastHotel] = useStateStorage('last-hotel', null);
     useWebsiteTitle("Strona główna");
+
+    const [lastHotel, setLastHotel] = useStateStorage('last-hotel', null);
 
     const [loading, setLoading] = useState(true);
     const [hotels, setHotels] = useState([]);
@@ -65,9 +67,13 @@ export default function Home(props) {
 
     return loading ? <LoadingIcon /> : (
         <>
-            {lastHotel ?<LastHotel {...lastHotel} onRemove={removeLastHotel} /> : null}
-            {getBestHotel() ? <BestHotel getHotel={getBestHotel} /> : null}
-            <Hotels onOpen={openHotel} hotels={hotels}/>
+            {lastHotel ? <LastHotel {...lastHotel} onRemove={removeLastHotel} /> : null}
+            {getBestHotel() 
+                ? <BestHotel getHotel={getBestHotel} /> 
+                : null
+            }
+            <Hotels onOpen={openHotel} hotels={hotels} />
         </>
     );
+
 }

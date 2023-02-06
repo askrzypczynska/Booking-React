@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function LastHotel(props) {
 
@@ -8,9 +9,9 @@ function LastHotel(props) {
                     Ostatnio oglądałeś ten hotel. Czy jesteś wciąż zainteresowany?
                 </div>
                 <div>
-                    <a href="#" className="m-2 btn btn-sm btn-dark">
+                    <Link to={`/hotele/${props.id}`} className="m-2 btn btn-sm btn-dark">
                         Tak
-                    </a>
+                    </Link>
                     <button onClick={props.onRemove} className="btn btn-sm btn-dark">
                         Nie
                     </button>
@@ -23,6 +24,8 @@ function LastHotel(props) {
                 </div>
             </div>
         </div>
+
+    
     );
 }
 
