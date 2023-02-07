@@ -3,7 +3,7 @@ export default function ProfileDetails(props) {
         <form>
             <div className="form-group">
                 <label>Email</label>
-                <input type="email" value="dobrymail@mail.pl" className="form-control"/>
+                <input type="email" className="form-control"/>
             </div>
             <div className="form-group">
                 <label>Hasło</label>
