@@ -9,6 +9,7 @@ export default function Login(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const [valid, setValid] = useState(null)
 
     const submit = (e) => {
         e.preventDefault();
@@ -16,8 +17,15 @@ export default function Login(props) {
         
         setTimeout(() => {
             //Logowanie
-            setAuth(true);
-            history.push('/');
+            if (true) {
+                setAuth(true);
+                history.push('/');
+            } else {
+                setValid(false)
+                setPassword('')
+            }
+
+            setLoading(false)
         }, 500);
     }
 
@@ -25,26 +33,31 @@ export default function Login(props) {
     return (
         <div>
             <h2>Logowanie:</h2>
+
+            {valid === false ? (
+                <div className="alert alert-danger">Niepoprawne dane logowania</div>
+            ) : null}
+
             <form onSubmit={submit}>
-            <div className="form-group">
-                <label>Email</label>
-                <input 
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)} 
-                    className="form-control"/>
-            </div>
-            <div className="form-group">
-                <label>Hasło</label>
-                <input 
-                    type="password" 
-                    value={password} 
-                    onChange={e => setPassword(e.target.value)} 
-                    className="form-control"
-                />
-            </div>
-            <LoadingButton loading={loading} label="Zaloguj">Zaloguj</LoadingButton>
-        </form>
+                <div className="form-group">
+                    <label>Email</label>
+                    <input 
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)} 
+                        className="form-control"/>
+                </div>
+                <div className="form-group">
+                    <label>Hasło</label>
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        className="form-control"
+                    />
+                </div>
+                <LoadingButton loading={loading} label="Zaloguj">Zaloguj</LoadingButton>
+            </form>
         </div>
     );
 }
