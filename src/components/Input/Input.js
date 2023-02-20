@@ -136,6 +136,10 @@ function Input(props) {
             return <InputRadio {...props} />
         case 'textarea':
             return <InputTextarea {...props} />
+        case 'password':
+            return <InputText {...props} type='password' />
+        case 'email':
+            return <InputText {...props} type='email' />
         default:
             return <InputText {...props} />
     }
