@@ -5,20 +5,19 @@ export default function useAuth() {
     
     const authContext = useContext(AuthContext);
 
-    const auth = authContext.isAuthenticated;
+    const auth = authContext.user;
 
     useDebugValue(auth ? "Zalogowany" : "Wylogowany");
 
-    const setAuth = (isAuthenticated, tokenData = null) => {
-        if (isAuthenticated) {
-            authContext.login();
-
-            if (tokenData) {
-                window.localStorage.setItem('token-data', JSON.stringify(tokenData));
-            }
+    const setAuth = (user) => {
+        if (user) {
+            //login
+            authContext.login(user);
+            window.localStorage.setItem('token-data', JSON.stringify(user));
         } else {
+            //logout
             authContext.logout();
-            window.localStorage.removeItem('token-data', JSON.stringify(tokenData));
+            window.localStorage.removeItem('token-data');
         }
     }
 

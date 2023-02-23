@@ -2,7 +2,7 @@ import { useState } from "react";
 import LoadingButton from "../../../components/UI/LoadingButton/LoadingButton";
 import { validate } from "../../../helpers/validations";
 import Input from "../../../components/Input/Input";
-import axiosFresh from "axios";
+import axios from "../../../axios-auth";
 import useAuth from "../../../hooks/useAuth";
 import { useHistory } from 'react-router-dom'
 
@@ -25,6 +25,8 @@ export default function Register(props) {
         }
     });
 
+    const [error, setError] = useState('');
+
     const valid = !Object.values(form)
         .map(input => input.error)
         .filter(error => error)
@@ -35,15 +37,20 @@ export default function Register(props) {
         e.preventDefault();
 
         try {
-            const res = await axiosFresh.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCvE6MBvfoUZbjkSNAX_2FnfR7PymZICfk', {
+            const res = await axios.post('accounts:signUp', {
                 email: form.email.value,
                 password: form.password.value,
                 returnSecureToken: true
             });
-            setAuth(true, res.data)
+            setAuth({
+                email: res.data.email,
+                token: res.data.idToken,
+                userID: res.data.localId,
+            })
             history.push('/')
         } catch (ex) {
-            console.log(ex.response);
+            setError(ex.response.data.error.message)
+            setLoading(false)
         }
     }
 
@@ -92,6 +99,9 @@ export default function Register(props) {
                         showError={form.password.showError}
                     />
 
+                    {error ? (
+                        <div className="alert alert-danger">Podany email jest już w bazie!</div>
+                    ) : null}
 
                     <div className="text-right">
                         <LoadingButton
