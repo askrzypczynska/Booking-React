@@ -47,6 +47,7 @@ export default function Register(props) {
                 token: res.data.idToken,
                 userID: res.data.localId,
             })
+            
             history.push('/')
         } catch (ex) {
             setError(ex.response.data.error.message)
