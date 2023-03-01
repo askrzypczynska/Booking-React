@@ -68,7 +68,7 @@ const AddHotel = props => {
                 name: form.name.value,
                 desctription: form.desctription.value,
                 city: form.city.value,
-                rooms: form.city.value,
+                rooms: form.rooms.value,
                 features: form.features.value,
                 status: form.status.value,
                 user_id: auth.userID
