@@ -5,7 +5,6 @@ import BestHotel from '../../components/Hotels/BestHotel/BestHotel';
 import Hotels from '../../components/Hotels/Hotels';
 import { useEffect, useState } from 'react';
 import LoadingIcon from '../../components/UI/LoadingIcon/LoadingIcon';
-import { Last } from 'react-bootstrap/esm/PageItem';
 import axios from '../../axios';
 import { ObjectToArrayWithId } from '../../helpers/objects';
 
@@ -60,9 +59,8 @@ export default function Home(props) {
     const fetchHotels = async () => {
         try {
             const res = await axios.get('/hotels.json');
-            const newHotel = ObjectToArrayWithId(res.data)
-            console.log(res);
-            setHotels(newHotel);
+            const newHotels = ObjectToArrayWithId(res.data).filter(hotel => hotel.status == 1);
+            setHotels(newHotels);
         } catch (ex) {
             console.log(ex.response);
         }
