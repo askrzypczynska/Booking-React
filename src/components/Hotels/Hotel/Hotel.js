@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
 import styles from "./Hotel.module.css"
-import hotelImg from "../../../assets/images/hotel1.png"
 import ThemeContext from "../../../context/themeContext";
 import { useContext } from "react";
 import useAuth from "../../../hooks/useAuth";
@@ -11,7 +10,7 @@ const propTypes = {
     city: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    desctription: PropTypes.string.isRequired,
 }
 
 function Hotel(props){
@@ -31,7 +30,7 @@ function Hotel(props){
                 <div className={"row"}>
                     <div className="col-4">            
                         <img 
-                            src={hotelImg} 
+                            src={`https://loremflickr.com/326/217/architecture,building?random=${Math.floor(Math.random()*100)}`}
                             alt="" 
                             className="img-fluid img-thumbnail"/>
                     </div>
@@ -55,7 +54,7 @@ function Hotel(props){
                     </div>
 
                     <div className="col-12">
-                        <p className={styles.description}>{props.description}</p>
+                        <p className={styles.desctription}>{props.desctription}</p>
                             <Link to={`/hotele/${props.id}`} onClick={clickHandler} className={`btn btn-${theme.color} mt-2 px-4`}>
                                 Pokaż
                             </Link>

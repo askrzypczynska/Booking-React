@@ -3,16 +3,18 @@ import axios from '../../../../axios'
 import { useHistory } from "react-router-dom";
 import HotelForm from "../HotelForm";
 import { useParams } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 
 const EditHotel = props => {
+    const [auth] = useAuth();
     const { id } = useParams();
     const history = useHistory();
     const imageRef = useRef();
     const [hotel, setHotel] = useState(null);
 
     const submit = async form => {
-        await axios.patch(`/hotels/${id}.json`, form);
+        await axios.patch(`/hotels/${id}.json?auth=${auth.token}`, form);
         history.push('/profil/hotele');
     }
 
