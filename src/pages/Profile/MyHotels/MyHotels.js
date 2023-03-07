@@ -24,7 +24,6 @@ export default function MyHotels(props) {
         try {
             await axios.delete(`/hotels/${id}.json`)
             setHotels(hotels.filter(x => x.id !== id))
-            console.log(id);
         } catch (ex) {
             console.log(ex.response);
         }
@@ -54,8 +53,7 @@ export default function MyHotels(props) {
                                     }
                                 </td>
                                 <td>
-                                    <Link to={`/profil/hotele/edytuj/:
-                                    ${hotel.id}`} className="btn btn-outline-primary">Edytuj</Link>
+                                    <Link to={`/profil/hotele/edytuj/${hotel.id}`} className="btn btn-outline-primary">Edytuj</Link>
                                     <button onClick={() => deleteHandler(hotel.id)} className="ml-2 btn btn-outline-danger">Usuń</button>
                                 </td>
                             </tr>

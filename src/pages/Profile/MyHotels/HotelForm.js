@@ -47,11 +47,12 @@ const HotelForm = props => {
             error: '',
             showError: false,
             rules: ['required']
-        }
+        },
     });
 
     const changeHandler = (value, fieldName) => {
         const error = validate(form[fieldName].rules, value);
+
         setForm({
             ...form, 
             [fieldName]: {
@@ -64,8 +65,8 @@ const HotelForm = props => {
     }
 
     const submit = async e => {
-        setLoading(true)
         e.preventDefault();
+        setLoading(true);
 
         try {
             props.onSubmit({
@@ -87,7 +88,6 @@ const HotelForm = props => {
     useEffect(() => {
         const newForm = {...form};
         for (const key in props.hotel) {
-            console.log(newForm);
             newForm[key].value = props.hotel[key];
         }
         setForm(newForm);

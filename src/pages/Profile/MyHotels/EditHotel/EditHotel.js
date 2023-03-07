@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import HotelForm from "../HotelForm";
 import { useParams } from "react-router-dom";
 
+
 const EditHotel = props => {
     const { id } = useParams();
     const history = useHistory();
@@ -18,14 +19,15 @@ const EditHotel = props => {
     const fetchHotel = async () => {
         const res = await axios.get(`/hotels/${id}.json`)
         const hotelData = res.data;
-        console.log(id);
+        delete(hotelData.user_id);
+        // delete(hotelData.rating);
 
-        setHotel(hotelData)
+        setHotel(hotelData);
     }
-
     useEffect(() => {
         fetchHotel();
     }, []);
+
 
     return (
         <div className="card">

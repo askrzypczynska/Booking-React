@@ -3,14 +3,16 @@ import axios from '../../../../axios'
 import { useHistory } from "react-router-dom";
 import HotelForm from "../HotelForm";
 
+
 const AddHotel = props => {
     const history = useHistory();
     const imageRef = useRef();
 
     const submit = async form => {
-        await axios.post('/hotels.json', form);
+        await axios.post(`/hotels.json`, form);
         history.push('/profil/hotele');
     }
+
 
     return (
         <div className="card">
