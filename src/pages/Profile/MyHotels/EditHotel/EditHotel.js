@@ -21,8 +21,9 @@ const EditHotel = props => {
     const fetchHotel = async () => {
         const res = await axios.get(`/hotels/${id}.json`)
         const hotelData = res.data;
+        
         delete(hotelData.user_id);
-        // delete(hotelData.rating);
+        delete(hotelData.rating);
 
         setHotel(hotelData);
     }

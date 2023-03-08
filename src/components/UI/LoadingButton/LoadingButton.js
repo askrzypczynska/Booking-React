@@ -5,11 +5,11 @@ export default function LoadingButton(props) {
     delete buttonProps.loading;
 
     return props.loading 
-        ? ( 
+        ? (
             <button className={`btn ${className}`} type="button" disabled>
-                <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                <span className="sr-only">Ładowanie...</span>
+            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span className="sr-only">Ładowanie...</span>
             </button>
         )
-        : <button {...buttonProps} className={`btn ${className}`}>{props.children}</button> 
+        : <button {...buttonProps} className={`btn ${className}`}>{props.children}</button>
 }

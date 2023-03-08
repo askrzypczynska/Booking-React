@@ -48,6 +48,7 @@ const HotelForm = props => {
             showError: false,
             rules: ['required']
         },
+
     });
 
     const changeHandler = (value, fieldName) => {
