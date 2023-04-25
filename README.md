@@ -1,6 +1,9 @@
 # Booking site based on booking.com in React.js
 A site based on booking.com for viewing and adding rental ads. The site allows you to search by hotel name, create an account, change login information, add your own hotel, or rate another hotel.
 
+My project can be found here: https://askrzypczynska.github.io/Booking-React/
+#### *The link will take you to a "404 error," so on the 404 page, click "Home" to get to the main page. Sorry for the problems :)
+
 ### Technologies Used
 * React.js
 * HTML
